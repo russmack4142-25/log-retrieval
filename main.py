@@ -57,3 +57,20 @@ def parse_log_file(file_path: str) -> List[Dict]:
         print(f"Warning: Malformed log line at line {line_number}")
   return errors
 
+def print_summary(
+    instance_id: str,
+    instance_state: str,
+    errors: List[Dict]
+) -> None:
+  # prints a summary of the log retrieval process
+  print("\n===========Diagnostic summary===========")
+  print(f"Instance ID: {instance_id}")
+  print(f"Instance State: {instance_state}")
+  print(f"Number of HTTP 500 errors found: {len(errors)}")
+  
+  if errors:
+    print("Timestamps of HTTP 500 errors:")
+    
+    for error in errors:
+      print(f"- {error['timestamp']}")
+
