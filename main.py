@@ -46,7 +46,7 @@ def parse_log_file(file_path: str) -> List[Dict]:
         date = parts[0]
         time = parts[1]
  
-        status_code = parts[-2]
+        status_code = parts[-4]
         # gets HTTP status code.
 
         if status_code == "500":
@@ -73,4 +73,23 @@ def print_summary(
     
     for error in errors:
       print(f"- {error['timestamp']}")
+
+def main():
+  if len(sys.argv) != 2:
+    print("Usage: python main.py <instance_id>")
+    sys.exit(1)
+
+  instance_id = sys.argv[1]
+
+  try:
+    instance_state = get_instance_state(instance_id)
+    log_file_path = download_log_from_s3(instance_id)
+    errors = parse_log_file(log_file_path)
+    print_summary(instance_id, instance_state, errors)
+  except Exception as e:
+    print(f"Error: {e}")
+    sys.exit(1)
+
+if __name__ == "__main__":
+  main()
 
