@@ -24,5 +24,31 @@ Python 3.9+ or later
 ## Run
 
 ```bash
-python main.py i-1234567890abcdef0
+python3 main.py i-1234567890abcdef0
 ```
+
+## ERROR HANDLING
+
+- Invalid EC2 Instance ID's
+- Missing log files
+- Empty log files
+- Malformed log entries
+
+---
+
+## LIMITATIONS
+
+This script does not handle any of the following:
+
+- AWS authentication
+- Real S3 downloads
+- Multiple IIS log formats
+- Compressed ZIP extraction
+- Possible timezone conversion
+- Very large log files (>GB scale).
+
+_This project was written in Python as it's the only programming language i have used on a day
+to day basis.  I can convert this into a typescript version using ChatGPT if necessary but i wouldn't
+be able to explain the code if needed, in an interview.  I am more than willing to expand my knowledge by
+learning typescript prior to any role i am offered._
+
